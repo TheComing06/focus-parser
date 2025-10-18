@@ -11,22 +11,6 @@ export default function Home() {
   const [prevFocusId, setPrevFocusId] = useState<string>();
   const [excFocusId, setExcFocusId] = useState<string>(); 
 
-  function handleChangeArea(event:React.ChangeEvent<HTMLTextAreaElement>) {
-    const durValue = event.target.value;
-    const parsedDur = Number(durValue);
-
-    setFocusDur(parsedDur);
-    setFocusMod(event.target.value);
-  }
-
-  function handleChange(event:React.ChangeEvent<HTMLInputElement>) {
-    setFocusName(event.target.value);
-    setFocusDesc(event.target.value);
-    setFocusId(event.target.value);
-    setPrevFocusId(event.target.value);
-    setExcFocusId(event.target.value);
-  }
-
   function createFocus(dur:number = 0, mod:string = "", id:string = "", prevId:string = "", excId:string = "") {
     let cost = 0;
     let result = ``;
@@ -103,13 +87,13 @@ export default function Home() {
       </header>
       <main className="place-items-center">
         <div className="grid grid-cols-1 gap-3 pt-40 pb-5">
-          <input placeholder="Focus Name" type="text" className="w-70 text-black bg-gray-200 rounded-md px-2 font-semibold" value={focusName} onChange={handleChange} />
-          <textarea placeholder="Focus Description" className="w-70 h-auto text-black bg-gray-200 rounded-md px-2 font-medium" value={focusDesc} onChange={handleChangeArea} />
-          <input type="number" placeholder="Focus Duration" className="w-70 text-black bg-gray-200 rounded-md px-2 font-medium" value={focusDur} onChange={handleChange} />
-          <textarea placeholder="Focus Modifier" className="w-70 h-auto text-black bg-gray-200 rounded-md px-2 font-medium" value={focusMod} onChange={handleChangeArea} />
-          <input type="text" placeholder="FocusID Example: iva_politfoc_1" className="w-70 text-black bg-gray-200 rounded-md px-2 font-medium" value={focusId} onChange={handleChange} />
-          <input type="text" placeholder="Previus FocusID (optional)" className="w-70 text-black bg-gray-200 rounded-md px-2 font-medium" value={prevFocusId} onChange={handleChange} />
-          <input type="text" placeholder="Exception FocusID (optional)" className="w-70 text-black bg-gray-200 rounded-md px-2 font-medium" value={excFocusId} onChange={handleChange} />
+          <input placeholder="Focus Name" type="text" className="w-70 text-black bg-gray-200 rounded-md px-2 font-semibold" value={focusName} onChange={(e:React.ChangeEvent<HTMLInputElement>) => setFocusName(e.target.value)} />
+          <textarea placeholder="Focus Description" className="w-70 h-auto text-black bg-gray-200 rounded-md px-2 font-medium" value={focusDesc} onChange={} />
+          <input type="number" placeholder="Focus Duration" className="w-70 text-black bg-gray-200 rounded-md px-2 font-medium" value={focusDur} onChange={} />
+          <textarea placeholder="Focus Modifier" className="w-70 h-auto text-black bg-gray-200 rounded-md px-2 font-medium" value={focusMod} onChange={} />
+          <input type="text" placeholder="FocusID Example: iva_politfoc_1" className="w-70 text-black bg-gray-200 rounded-md px-2 font-medium" value={focusId} onChange={} />
+          <input type="text" placeholder="Previus FocusID (optional)" className="w-70 text-black bg-gray-200 rounded-md px-2 font-medium" value={prevFocusId} onChange={} />
+          <input type="text" placeholder="Exception FocusID (optional)" className="w-70 text-black bg-gray-200 rounded-md px-2 font-medium" value={excFocusId} onChange={} />
         </div>
         <button className="grid grid-cols-1 
         text-2xl 
