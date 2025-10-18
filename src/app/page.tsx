@@ -3,13 +3,13 @@
 import React, {useState} from "react";
 
 export default function Home() {
-  const [focusName, setFocusName] = useState<string>();
-  const [focusDesc, setFocusDesc] = useState<string>();
-  const [focusDur, setFocusDur] = useState<number>();
-  const [focusMod, setFocusMod] = useState<string>();
-  const [focusId, setFocusId] = useState<string>();
-  const [prevFocusId, setPrevFocusId] = useState<string>();
-  const [excFocusId, setExcFocusId] = useState<string>();
+  const [focusName, setFocusName] = useState<string>('');
+  const [focusDesc, setFocusDesc] = useState<string>('');
+  const [focusDur, setFocusDur] = useState<number>(0);
+  const [focusMod, setFocusMod] = useState<string>('');
+  const [focusId, setFocusId] = useState<string>('');
+  const [prevFocusId, setPrevFocusId] = useState<string>('');
+  const [excFocusId, setExcFocusId] = useState<string>('');
 
   function createFocus(dur:number = 0, mod:string = "", id:string = "", prevId:string = "", excId:string = "") {
     let cost = 0;
@@ -78,6 +78,15 @@ export default function Home() {
     return result;
   }
 
+  function localisationFocus(name:string, desc:string, id:string) {
+    const result = `
+      ${id}: "${name}"
+      ${id}_desc: "${desc}"
+    `;
+
+    return result;
+  }
+
   return (
     <>
       <header className="place-items-center">
@@ -86,7 +95,7 @@ export default function Home() {
         </div>
       </header>
       <main className="place-items-center">
-        <div className="grid grid-cols-1 gap-3 pt-40 pb-5">
+        <div className="grid grid-cols-1 gap-3 pt-30 pb-5">
           <input placeholder="Focus Name" type="text" className="w-70 text-black bg-gray-200 rounded-md px-2 font-semibold" value={focusName} onChange={(e:React.ChangeEvent<HTMLInputElement>) => setFocusName(e.target.value)} />
           <textarea placeholder="Focus Description" className="w-70 h-auto text-black bg-gray-200 rounded-md px-2 font-medium" value={focusDesc} onChange={(e:React.ChangeEvent<HTMLTextAreaElement>) => setFocusDesc(e.target.value)} />
           <input type="number" placeholder="Focus Duration" className="w-70 text-black bg-gray-200 rounded-md px-2 font-medium" value={focusDur} onChange={(e:React.ChangeEvent<HTMLInputElement>) => setFocusDur(Number(e.target.value))} />
@@ -107,12 +116,12 @@ export default function Home() {
         transition-transform duration-400 ease-in-out">
           Parse
         </button>
-        <div className="bg-gray-200 border-1 w-70 h-auto text-black rounded-md m-5 px-2 whitespace-pre-wrap">
+        <div className="bg-gray-200 border-1 w-150 h-auto text-black rounded-md m-5 px-2 whitespace-pre-wrap">
           Country.txt:
           {createFocus(focusDur, focusMod, focusId, prevFocusId, excFocusId)}
 
           Localisation:
-          
+          {localisationFocus(focusName, focusDesc, focusId)}
         </div>       
       </main>
     </>  
